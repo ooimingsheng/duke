@@ -15,14 +15,17 @@ public class Duke {
 
         Scanner scanner = new Scanner(System.in);
         boolean shouldContinue = true;
+        ToDoList toDoList = new ToDoList();
 
         while(shouldContinue) {
             String input = scanner.nextLine();
             if(input.equals("bye")){
-                System.out.println("Bye. Hope to see you again soon!\n" );
+                System.out.println("Bye. Hope to see you again soon!");
                 shouldContinue = false;
+            } else if(input.equals("list")){
+                toDoList.listItems();
             } else {
-                System.out.println(input + "\n");
+                toDoList.addItem(input);
             }
         }
     }
