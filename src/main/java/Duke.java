@@ -20,16 +20,21 @@ public class Duke {
 
         while(shouldContinue) {
             String input = scanner.nextLine();
-            if(input.equals("bye")){
+            String[] str = input.split(" ", 2);
+            String action = str[0];
+            if (action.equals("bye")) {
                 System.out.println("Bye. Hope to see you again soon!");
                 shouldContinue = false;
-            } else if(input.equals("list")){
+            } else if(action.equals("list")) {
                 toDoList.listTasks();
-            } else if(input.substring(0, 4).equals("done")){
-                String str[] = input.split(" ");
+            } else if(action.equals("done")) {
                 int taskNo = Integer.parseInt(str[1]);
                 toDoList.checkOffTask(taskNo);
-            }  else {
+            } else if(action.equals("todo") || action.equals("deadline") || action.equals("event")) {
+                String taskType = str[0];
+                String taskDescription = str[1];
+                toDoList.addTask(taskDescription, taskType);
+            } else {
                 toDoList.addTask(input);
             }
         }

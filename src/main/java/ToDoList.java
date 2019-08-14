@@ -1,18 +1,24 @@
+import java.util.HashMap;
 import java.util.List;
 import java.util.ArrayList;
 
 public class ToDoList {
-
     private List<Task> toDoList;
 
     public ToDoList() {
         toDoList = new ArrayList<>();
     }
 
-    public void addTask(String str) {
-        System.out.println("added: " + str + "\n");
-        Task task = new Task(str);
+    public void addTask(String description) {
+        addTask(description, "todo");
+    }
+
+    public void addTask(String description, String taskType) {
+        Task task = Task.taskFactory(description, taskType);
         toDoList.add(task);
+        System.out.println("Got it. I've added this task:");
+        System.out.println("  " + task);
+        System.out.println("Now you have " + toDoList.size() + " tasks in the list.");
     }
 
     public void checkOffTask(int taskNo) {
