@@ -1,4 +1,5 @@
 import java.util.Scanner;
+import java.lang.Integer;
 
 public class Duke {
     public static void main(String[] args) {
@@ -23,9 +24,13 @@ public class Duke {
                 System.out.println("Bye. Hope to see you again soon!");
                 shouldContinue = false;
             } else if(input.equals("list")){
-                toDoList.listItems();
-            } else {
-                toDoList.addItem(input);
+                toDoList.listTasks();
+            } else if(input.substring(0, 4).equals("done")){
+                String str[] = input.split(" ");
+                int taskNo = Integer.parseInt(str[1]);
+                toDoList.checkOffTask(taskNo);
+            }  else {
+                toDoList.addTask(input);
             }
         }
     }
