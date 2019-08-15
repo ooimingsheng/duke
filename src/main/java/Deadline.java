@@ -4,7 +4,7 @@ public class Deadline extends Task {
 
     public Deadline(String description, String by) {
         super(description);
-        this.by = by;
+        this.by = DukeDateFormatter.convertStringToDateIfPossible(by);
     }
 
     public Deadline(String description, boolean isDone, String by) {
