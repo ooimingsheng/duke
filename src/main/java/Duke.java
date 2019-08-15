@@ -16,7 +16,8 @@ public class Duke {
 
         Scanner scanner = new Scanner(System.in);
         boolean shouldContinue = true;
-        ToDoList toDoList = new ToDoList();
+        String filePath = "C:\\Users\\Ooi Ming Sheng\\Desktop\\CS2103\\Individual project\\duke\\data\\duke.txt";
+        ToDoList toDoList = new ToDoList(filePath);
 
         while(shouldContinue) {
             String input = scanner.nextLine();
@@ -25,6 +26,7 @@ public class Duke {
             try {
                 if (action.equals("bye")) {
                     System.out.println("Bye. Hope to see you again soon!");
+                    toDoList.saveTasks();
                     shouldContinue = false;
                 } else if(action.equals("list")) {
                     toDoList.listTasks();

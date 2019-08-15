@@ -1,12 +1,30 @@
+import java.io.*;
 import java.util.List;
 import java.util.ArrayList;
 
 public class ToDoList {
+
+    private String filePath;
     private List<Task> toDoList;
     private static final String indent = "  ";
+    private static String divider = " XXXDIVIDERXXX ";
 
-    public ToDoList() {
+    public ToDoList(String filePath) {
+        this.filePath = filePath;
         toDoList = new ArrayList<>();
+        readTasksFromFile();
+    }
+
+    private void readTasksFromFile() {
+        try {
+            BufferedReader br = new BufferedReader(new FileReader(filePath));
+            String line;
+            while ((line = br.readLine()) != null) {
+                String[] taskParams = line.split(divider);
+                Task task = Task.taskFactory(taskParams);
+                toDoList.add(task);
+            }
+        } catch (IOException ioException) { }
     }
 
     public void addTask(String description) {
@@ -42,5 +60,26 @@ public class ToDoList {
             System.out.println(counter + "." + task);
             counter++;
         }
+    }
+
+    public void saveTasks() {
+        try (FileWriter writer = new FileWriter(filePath)) {
+            for (Task task : toDoList) {
+                if (task instanceof  ToDo) {
+                    writer.write("T");
+                } else if(task instanceof  Deadline){
+                    writer.write("D");
+                } else if(task instanceof  Event){
+                    writer.write("E");
+                }
+                writer.write(divider + task.hasBeenDone() + divider + task.getDescription());
+                if (task instanceof  Deadline) {
+                    writer.write(divider + ((Deadline) task).getDeadline());
+                } else if(task instanceof  Event) {
+                    writer.write(divider + ((Event) task).getEventVenue());
+                }
+                writer.write("\n");
+            }
+        } catch (IOException ioException) { }
     }
 }
