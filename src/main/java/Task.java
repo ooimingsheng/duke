@@ -1,4 +1,5 @@
 public class Task {
+
     protected String description;
     protected boolean isDone;
 
@@ -20,9 +21,39 @@ public class Task {
         }
     }
 
+    public static Task taskFactory(String[] taskParams){
+        String taskType = taskParams[0];
+        boolean  isDone = taskParams[1].equals("true");
+        String taskDescription = taskParams[2];
+        if (taskType.equals("T")) {
+            return new ToDo(taskDescription, isDone);
+        } else if (taskType.equals("D")){
+            String by = taskParams[3];
+            return new Deadline(taskDescription, isDone, by);
+        } else if (taskType.equals("E")) {
+            String at = taskParams[3];
+            return new Event(taskDescription, isDone, at);
+        } else {
+            return null;
+        }
+    }
+
     public Task(String description) {
         this.description = description;
         this.isDone = false;
+    }
+
+    public Task(String description, boolean isDone) {
+        this.description = description;
+        this.isDone = isDone;
+    }
+
+    public String getDescription(){
+        return description;
+    }
+
+    public Boolean hasBeenDone() {
+        return isDone;
     }
 
     public String getStatusIcon() {
