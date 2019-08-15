@@ -2,55 +2,43 @@ import java.util.Scanner;
 import java.lang.Integer;
 
 public class Duke {
-    public static void main(String[] args) {
-        String logo = " ____        _        \n"
-                + "|  _ \\ _   _| | _____ \n"
-                + "| | | | | | | |/ / _ \\\n"
-                + "| |_| | |_| |   <  __/\n"
-                + "|____/ \\__,_|_|\\_\\___|\n";
 
-        System.out.println(
-                "Hello! I'm Duke" + "\n"
-                + "What can I do for you?"
-        );
+    private Storage storage;
+    private TaskList tasks;
+    private Ui ui;
 
-        Scanner scanner = new Scanner(System.in);
-        boolean shouldContinue = true;
-        String filePath = "C:\\Users\\Ooi Ming Sheng\\Desktop\\CS2103\\Individual project\\duke\\data\\duke.txt";
-        ToDoList toDoList = new ToDoList(filePath);
+    public Duke(String filePath) {
+        ui = new Ui();
+        storage = new Storage(filePath);
+        try {
+            tasks = new TaskList(storage.load());
+        } catch (DukeException e) {
+            ui.showLoadingError();
+            tasks = new TaskList();
+        }
+    }
 
-        while(shouldContinue) {
-            String input = scanner.nextLine();
-            String[] str = input.split(" ", 2);
-            String action = str[0];
+    public void run() {
+        ui.showWelcome();
+        boolean isExit = false;
+        while (!isExit) {
             try {
-                if (action.equals("bye")) {
-                    System.out.println("Bye. Hope to see you again soon!");
-                    toDoList.saveTasks();
-                    shouldContinue = false;
-                } else if(action.equals("list")) {
-                    toDoList.listTasks();
-                } else if(action.equals("blah")) {
-                    throw new DukeException("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
-                } else if(action.equals("delete")) {
-                    int taskNo = Integer.parseInt(str[1]);
-                    toDoList.removeTask(taskNo);
-                } else if(action.equals("done")) {
-                    int taskNo = Integer.parseInt(str[1]);
-                    toDoList.checkOffTask(taskNo);
-                } else if(action.equals("todo") || action.equals("deadline") || action.equals("event")) {
-                    String taskType = str[0];
-                    if (str.length <= 1) {
-                        throw new DukeException("☹ OOPS!!! The description of a " + taskType + " cannot be empty.");
-                    }
-                    String taskDescription = str[1];
-                    toDoList.addTask(taskDescription, taskType);
-                } else {
-                    toDoList.addTask(input);
-                }
-            } catch (DukeException dukeException) {
-                System.out.println(dukeException.getMessage());
+                String fullCommand = ui.readCommand();
+                ui.showLine();
+                Command c = Parser.parse(fullCommand);
+                c.execute(tasks, ui, storage);
+                isExit = c.isExit();
+            } catch (DukeException e) {
+                ui.showError(e.getMessage());
+            } finally {
+                ui.showLine();
             }
         }
     }
+
+    public static void main(String[] args) {
+        String filePath = "C:\\Users\\Ooi Ming Sheng\\Desktop\\CS2103\\Individual project\\duke\\data\\duke.txt";
+        new Duke(filePath).run();
+    }
 }
+
