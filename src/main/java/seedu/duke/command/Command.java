@@ -10,6 +10,13 @@ public class Command {
     protected String action;
     protected boolean isExit;
 
+
+    /**
+     * Command has a private constructor to prevent the object from being created directly.
+     */
+    private Command() {
+    }
+
     /**
      * Public constructor that returns a command to the system.
      * @param isExit whether the system should terminate after the current command.
