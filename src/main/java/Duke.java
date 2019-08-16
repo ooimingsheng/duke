@@ -1,5 +1,5 @@
-import java.util.Scanner;
-import java.lang.Integer;
+import duke.command.*;
+import duke.task.*;
 
 public class Duke {
 

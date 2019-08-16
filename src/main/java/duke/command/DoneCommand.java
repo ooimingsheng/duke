@@ -1,6 +1,10 @@
+package duke.command;
+
+import duke.task.*;
+
 public class DoneCommand extends Command {
 
-    int taskNoToBeChecked;
+    private int taskNoToBeChecked;
 
     public DoneCommand(int taskNoToBeChecked){
         super(false);

@@ -1,7 +1,11 @@
+package duke.command;
+
+import duke.task.*;
+
 public class AddCommand  extends Command {
 
-    String taskDescription;
-    String taskType;
+    private String taskDescription;
+    private String taskType;
 
     public AddCommand(String taskDescription, String taskType){
         super(false);

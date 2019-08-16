@@ -1,9 +1,11 @@
+package duke.task;
+
 import java.util.Scanner;
 import java.util.List;
 
 public class Ui {
 
-    Scanner scanner;
+    private Scanner scanner;
     private static final String INDENT = "     ";
     private static final String SMALL_INDENT = "  ";
 

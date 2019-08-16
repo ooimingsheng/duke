@@ -1,6 +1,10 @@
+package duke.command;
+
+import duke.task.*;
+
 public class DeleteCommand extends Command {
 
-    int taskNoToBeRemoved;
+    private int taskNoToBeRemoved;
 
     public DeleteCommand(int taskNoToBeRemoved){
         super(false);
