@@ -43,4 +43,19 @@ public class TaskList {
         task.checkOff();
         return task;
     }
+
+    /*
+     * Returns a list of tasks from the tasks list whose description contains the stipulated substring.
+     * @params subStr the substring to be found in the task descriptions.
+     * @return a list of tasks from the tasks list whose description contains the stipulated substring.
+     */
+    public List<Task> findTasks(String subStr) {
+        List<Task> tasksWithSubstr = new ArrayList<>();
+        for (Task task : taskList) {
+            if (task.descriptionContainsSubstr(subStr)) {
+                tasksWithSubstr.add(task);
+            }
+        }
+        return tasksWithSubstr;
+    }
 }

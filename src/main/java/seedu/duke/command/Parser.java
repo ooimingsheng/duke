@@ -21,6 +21,9 @@ public class Parser {
             return new ByeCommand();
         case "list":
             return new ListCommand();
+        case "find":
+            String substring = params[1];
+            return new FindCommand(substring);
         case "delete":
             taskNo = Integer.parseInt(params[1]);
             return new DeleteCommand(taskNo);
