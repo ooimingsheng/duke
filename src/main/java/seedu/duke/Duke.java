@@ -13,6 +13,10 @@ public class Duke {
     private TaskList tasks;
     private Ui ui;
 
+    /**
+     * Public constructor that returns a duke reminder system with a particular storage filepath.
+     * @param filePath the file path to load and store task data.
+     */
     public Duke(String filePath) {
         ui = new Ui();
         storage = new Storage(filePath);
@@ -24,6 +28,9 @@ public class Duke {
         }
     }
 
+    /**
+     * Initiates the duke reminder system and parses commands to update the reminder list.
+     */
     public void run() {
         ui.showWelcome();
         boolean isExit = false;
@@ -42,6 +49,10 @@ public class Duke {
         }
     }
 
+    /**
+     * The main class to initialize and drive the program.
+     * @param args parameters recieved from the command line
+     */
     public static void main(String[] args) {
         String filePath = "C:\\Users\\Ooi Ming Sheng\\Desktop\\CS2103\\Individual project\\duke\\data\\duke.txt";
         new Duke(filePath).run();

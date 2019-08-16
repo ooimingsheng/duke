@@ -4,9 +4,17 @@ import seedu.duke.task.DukeException;
 
 public class Parser {
 
+    /**
+     * Parser has a private constructor to prevent the object from being created directly.
+     */
     private Parser() {
     }
 
+    /**
+     * Returns the appropriate command depending on the string inputted to the system.
+     * @param input the input string read by the system.
+     * @return the command the system needs to execute according to the input received by the system.
+     */
     public static Command parse(String input) throws DukeException {
         int taskNo;
         String taskType;

@@ -8,6 +8,12 @@ public class Task {
     protected String description;
     protected boolean isDone;
 
+    /**
+     * Factory that creates the appropriate task according to the function parameters.
+     * @param description the description of the task.
+     * @param taskType the type of task to be created.
+     * @return an uncompleted task according to the taskType and description
+     */
     public static Task taskFactory(String description, String taskType) {
         if (taskType.equals("todo")) {
             return new ToDo(description);
@@ -26,6 +32,12 @@ public class Task {
         }
     }
 
+    /**
+     * Factory that creates the appropriate task according to the function parameters.
+     * @param taskParams an array of the parameters of the task to be created of the following format:
+     *      [taskType, isDone, taskDescription, by/at ?].
+     * @return an uncompleted task according to the task params.
+     */
     public static Task taskFactory(String[] taskParams) {
         String taskType = taskParams[0];
         boolean isDone = taskParams[1].equals("true");
@@ -43,28 +55,52 @@ public class Task {
         }
     }
 
+    /**
+     * Public constructor of a task.
+     * @param description description of the task.
+     */
     public Task(String description) {
         this.description = description;
         this.isDone = false;
     }
 
+    /**
+     * Public constructor of a task.
+     * @param description description of the task.
+     * @param isDone whether the task has been completed.
+     */
     public Task(String description, boolean isDone) {
         this.description = description;
         this.isDone = isDone;
     }
 
+    /**
+     * Returns the description of the task.
+     * @return the description of the task.
+     */
     public String getDescription() {
         return description;
     }
 
+    /**
+     * Returns whether the task has been completed.
+     * @return whether the task has been completed.
+     */
     public Boolean hasBeenDone() {
         return isDone;
     }
 
+    /**
+     * Returns a check icon if the task has been completed and a cross otherwise.
+     * @return a check icon if the task has been completed and a cross otherwise.
+     */
     public String getStatusIcon() {
         return (isDone ? "\u2713" : "\u2718"); //return tick or X symbols
     }
 
+    /**
+     * Marks the task as completed.
+     */
     public void checkOff() {
         this.isDone = true;
     }

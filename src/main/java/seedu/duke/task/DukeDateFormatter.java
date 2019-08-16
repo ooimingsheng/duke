@@ -8,9 +8,17 @@ import java.text.ParseException;
 
 public class DukeDateFormatter {
 
+    /**
+     * DukeDateFormatter has a private constructor to prevent the object from being created directly.
+     */
     private DukeDateFormatter() {
     }
 
+    /**
+     * Takes a string and tries to convert it into a date if possible.
+     * @param str the string that is attempted to be coverted into a date.
+     * @return date format of the string if the string is of a "d/M/yyyy HHmm" format and the original string otherwise.
+     */
     public static String convertStringToDateIfPossible(String str) {
         try {
             SimpleDateFormat format = new SimpleDateFormat("d/M/yyyy HHmm");
@@ -27,6 +35,11 @@ public class DukeDateFormatter {
         }
     }
 
+    /**
+     * Returns the suffix of the integer n if it is between 1 and 31 and the empty string otherwise.
+     * @param n the integer value of the month (i.e. between 1 and 31).
+     * @return the suffix of the integer n if it is between 1 and 31 and the empty string otherwise.
+     */
     private static String getDayOfMonthSuffix(final int n) {
         if (!(n >= 1 && n <= 31)) {
             return "";
