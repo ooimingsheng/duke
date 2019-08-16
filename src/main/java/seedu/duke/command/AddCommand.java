@@ -1,6 +1,6 @@
-package duke.command;
+package seedu.duke.command;
 
-import duke.task.*;
+import seedu.duke.task.*;
 
 public class AddCommand  extends Command {
 

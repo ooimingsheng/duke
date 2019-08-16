@@ -1,6 +1,6 @@
-package duke.command;
+package seedu.duke.command;
 
-import duke.task.DukeException;
+import seedu.duke.task.DukeException;
 
 public class Parser {
 

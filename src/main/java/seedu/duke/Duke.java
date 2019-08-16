@@ -1,5 +1,7 @@
-import duke.command.*;
-import duke.task.*;
+package seedu.duke;
+
+import seedu.duke.command.*;
+import seedu.duke.task.*;
 
 public class Duke {
 
