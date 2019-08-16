@@ -10,6 +10,9 @@ public class Command {
     protected String action;
     protected boolean isExit;
 
+    /**
+     * Command has a private constructor to prevent the object from being created directly.
+     */
     private Command() {
     }
 
