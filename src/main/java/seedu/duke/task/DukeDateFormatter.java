@@ -8,7 +8,8 @@ import java.text.ParseException;
 
 public class DukeDateFormatter {
 
-    private DukeDateFormatter() {}
+    private DukeDateFormatter() {
+    }
 
     public static String convertStringToDateIfPossible(String str) {
         try {
@@ -27,17 +28,21 @@ public class DukeDateFormatter {
     }
 
     private static String getDayOfMonthSuffix(final int n) {
-        if(!(n >= 1 && n <= 31)) {
+        if (!(n >= 1 && n <= 31)) {
             return "";
         }
         if (n >= 11 && n <= 13) {
             return "th";
         }
         switch (n % 10) {
-            case 1:  return "st";
-            case 2:  return "nd";
-            case 3:  return "rd";
-            default: return "th";
+        case 1:
+            return "st";
+        case 2:
+            return "nd";
+        case 3:
+            return "rd";
+        default:
+            return "th";
         }
     }
 }

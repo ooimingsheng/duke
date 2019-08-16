@@ -8,10 +8,10 @@ public class Task {
     protected String description;
     protected boolean isDone;
 
-    public static Task taskFactory(String description, String taskType){
+    public static Task taskFactory(String description, String taskType) {
         if (taskType.equals("todo")) {
             return new ToDo(description);
-        } else if (taskType.equals("deadline")){
+        } else if (taskType.equals("deadline")) {
             String[] str = description.split(" /by ", 2);
             String taskDescription = str[0];
             String by = str[1];
@@ -26,13 +26,13 @@ public class Task {
         }
     }
 
-    public static Task taskFactory(String[] taskParams){
+    public static Task taskFactory(String[] taskParams) {
         String taskType = taskParams[0];
-        boolean  isDone = taskParams[1].equals("true");
+        boolean isDone = taskParams[1].equals("true");
         String taskDescription = taskParams[2];
         if (taskType.equals("T")) {
             return new ToDo(taskDescription, isDone);
-        } else if (taskType.equals("D")){
+        } else if (taskType.equals("D")) {
             String by = taskParams[3];
             return new Deadline(taskDescription, isDone, by);
         } else if (taskType.equals("E")) {
@@ -53,7 +53,7 @@ public class Task {
         this.isDone = isDone;
     }
 
-    public String getDescription(){
+    public String getDescription() {
         return description;
     }
 

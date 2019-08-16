@@ -1,7 +1,11 @@
 package seedu.duke;
 
-import seedu.duke.command.*;
-import seedu.duke.task.*;
+import seedu.duke.command.Command;
+import seedu.duke.command.Parser;
+import seedu.duke.task.TaskList;
+import seedu.duke.task.Ui;
+import seedu.duke.task.Storage;
+import seedu.duke.task.DukeException;
 
 public class Duke {
 

@@ -1,10 +1,12 @@
 package seedu.duke.command;
 
-import seedu.duke.task.*;
+import seedu.duke.task.TaskList;
+import seedu.duke.task.Ui;
+import seedu.duke.task.Storage;
 
-public class ListCommand  extends Command {
+public class ListCommand extends Command {
 
-    public ListCommand(){
+    public ListCommand() {
         super(false);
     }
 

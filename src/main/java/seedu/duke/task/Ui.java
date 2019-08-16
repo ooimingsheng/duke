@@ -17,6 +17,10 @@ public class Ui {
         System.out.println(INDENT + "No task data found.");
     }
 
+    public void showSavingError() {
+        System.out.println(INDENT + "Task data could not be saved.");
+    }
+
     public void showError(String errorMessage) {
         System.out.println(INDENT + errorMessage);
     }

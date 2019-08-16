@@ -32,25 +32,27 @@ public class Storage {
         return taskList;
     }
 
-    public void saveTasks(List<Task> taskList) {
+    public void saveTasks(List<Task> taskList, Ui ui) {
         try (FileWriter writer = new FileWriter(filePath)) {
             for (Task task : taskList) {
-                if (task instanceof  ToDo) {
+                if (task instanceof ToDo) {
                     writer.write("T");
-                } else if(task instanceof Deadline){
+                } else if (task instanceof Deadline) {
                     writer.write("D");
-                } else if(task instanceof  Event){
+                } else if (task instanceof Event) {
                     writer.write("E");
                 }
                 writer.write(DIVIDER + task.hasBeenDone() + DIVIDER + task.getDescription());
-                if (task instanceof  Deadline) {
+                if (task instanceof Deadline) {
                     writer.write(DIVIDER + ((Deadline) task).getDeadline());
-                } else if(task instanceof  Event) {
+                } else if (task instanceof Event) {
                     writer.write(DIVIDER + ((Event) task).getEventVenue());
                 }
                 writer.write("\n");
             }
-        } catch (IOException ioException) { }
+        } catch (IOException ioException) {
+            ui.showSavingError();
+        }
     }
 
 }

@@ -1,10 +1,11 @@
 package seedu.duke.task;
 
 public class DukeException extends Exception {
-    public DukeException(String msg)  {
+    public DukeException(String msg) {
         super(msg);
     }
-    public DukeException()  {
+
+    public DukeException() {
         super();
     }
 }

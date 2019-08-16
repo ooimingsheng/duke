@@ -1,6 +1,8 @@
 package seedu.duke.command;
 
-import seedu.duke.task.*;
+import seedu.duke.task.TaskList;
+import seedu.duke.task.Ui;
+import seedu.duke.task.Storage;
 
 public class Command {
 
@@ -8,7 +10,8 @@ public class Command {
     protected String action;
     protected boolean isExit;
 
-    private Command() {}
+    private Command() {
+    }
 
     protected Command(boolean isExit) {
         this.isExit = isExit;
@@ -18,5 +21,6 @@ public class Command {
         return isExit;
     }
 
-    public void execute(TaskList tasks, Ui ui, Storage storage) {}
+    public void execute(TaskList tasks, Ui ui, Storage storage) {
+    }
 }
