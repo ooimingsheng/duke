@@ -105,6 +105,14 @@ public class Task {
         this.isDone = true;
     }
 
+    /*
+     * Returns whether the task description contains the substring.
+     * @return whether the task description contains the substring.
+     */
+    public boolean descriptionContainsSubstr(String substr) {
+        return description.contains(substr);
+    }
+
     @Override
     public String toString() {
         return "[" + getStatusIcon() + "] " + description;
