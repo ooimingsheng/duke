@@ -12,7 +12,8 @@ public class Duke {
     private Storage storage;
     private TaskList tasks;
     private Ui ui;
-    private static final String filePath = "C:\\Users\\Ooi Ming Sheng\\Desktop\\CS2103\\Individual project\\duke\\data\\duke.txt";
+    private static final String filePath
+            = "C:\\Users\\Ooi Ming Sheng\\Desktop\\CS2103\\Individual project\\duke\\data\\duke.txt";
     private boolean isSystemRunning;
 
     /**
@@ -59,11 +60,11 @@ public class Duke {
     }
 
     /**
-     * Parse message
-     * @param message inputted to duke system
+     * Parse message.
+     * @param message inputted to duke system.
      */
     public String getResponse(String message) {
-        if(isSystemRunning){
+        if (isSystemRunning) {
             try {
                 Command c = Parser.parse(message);
                 c.execute(tasks, ui, storage);
@@ -79,6 +80,7 @@ public class Duke {
 
     /**
      * The main class to initialize and drive the program.
+     *
      * @param args parameters recieved from the command line
      */
     public static void main(String[] args) {
