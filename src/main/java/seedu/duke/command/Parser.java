@@ -23,8 +23,6 @@ public class Parser {
         String action = params[0];
 
         switch (action) {
-        case "blah":
-            throw new DukeException("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
         case "bye":
             return new ByeCommand();
         case "list":
@@ -48,7 +46,7 @@ public class Parser {
             taskDescription = params[1];
             return new AddCommand(taskDescription, taskType);
         default:
-            return new AddCommand(input);
+            throw new DukeException("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
         }
     }
 }

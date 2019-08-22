@@ -22,15 +22,6 @@ public class AddCommand extends Command {
     }
 
     /**
-     * Public constructor that returns a command to the system to add a "To Do" reminder when executed.
-     * @param taskDescription the description of the task.
-     */
-    public AddCommand(String taskDescription) {
-        super(false);
-        this.taskDescription = taskDescription;
-    }
-
-    /**
      * Adds a task to the system.
      * @param tasks the task list system involved in the command execution.
      * @param ui the user interface system involved in the command execution.
