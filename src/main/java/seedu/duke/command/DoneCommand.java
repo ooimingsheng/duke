@@ -28,5 +28,6 @@ public class DoneCommand extends Command {
     public void execute(TaskList tasks, Ui ui, Storage storage) {
         Task task = tasks.checkOffTask(taskNoToBeChecked);
         ui.showDoneMessage(task);
+        super.resultMessage = ui.getDoneMessage(task);
     }
 }

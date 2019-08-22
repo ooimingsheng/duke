@@ -1,8 +1,11 @@
 package seedu.duke.command;
 
+import seedu.duke.task.Task;
 import seedu.duke.task.TaskList;
 import seedu.duke.task.Ui;
 import seedu.duke.task.Storage;
+
+import java.util.List;
 
 public class FindCommand extends Command {
 
@@ -25,6 +28,8 @@ public class FindCommand extends Command {
      */
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) {
-        ui.showTaskList(tasks.findTasks(substring));
+        List<Task> taskList = tasks.findTasks(substring);
+        ui.showTaskList(taskList);
+        super.resultMessage = ui.getTaskList(taskList);
     }
 }

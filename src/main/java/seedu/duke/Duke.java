@@ -12,12 +12,14 @@ public class Duke {
     private Storage storage;
     private TaskList tasks;
     private Ui ui;
+    private static final String filePath = "C:\\Users\\Ooi Ming Sheng\\Desktop\\CS2103\\Individual project\\duke\\data\\duke.txt";
+    private boolean isSystemRunning;
 
     /**
      * Public constructor that returns a duke reminder system with a particular storage filepath.
-     * @param filePath the file path to load and store task data.
      */
-    public Duke(String filePath) {
+    public Duke() {
+        isSystemRunning = true;
         ui = new Ui();
         storage = new Storage(filePath);
         try {
@@ -50,12 +52,37 @@ public class Duke {
     }
 
     /**
+     * Get welcome message.
+     */
+    public String getWelcomeMessage() {
+        return ui.getWelcome();
+    }
+
+    /**
+     * Parse message
+     * @param message inputted to duke system
+     */
+    public String getResponse(String message) {
+        if(isSystemRunning){
+            try {
+                Command c = Parser.parse(message);
+                c.execute(tasks, ui, storage);
+                isSystemRunning = !c.isExit();
+                return c.getResultOfCommand();
+            } catch (DukeException e) {
+                return ui.getError(e.getMessage());
+            }
+        } else {
+            return "System has already shut down.";
+        }
+    }
+
+    /**
      * The main class to initialize and drive the program.
      * @param args parameters recieved from the command line
      */
     public static void main(String[] args) {
-        String filePath = "C:\\Users\\Ooi Ming Sheng\\Desktop\\CS2103\\Individual project\\duke\\data\\duke.txt";
-        new Duke(filePath).run();
+        new Duke().run();
     }
 }
 
