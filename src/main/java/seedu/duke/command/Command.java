@@ -8,13 +8,14 @@ public class Command {
 
     protected String[] params;
     protected String action;
+    protected String resultMessage;
     protected boolean isExit;
-
 
     /**
      * Command has a private constructor to prevent the object from being created directly.
      */
     private Command() {
+        resultMessage = "";
     }
 
     /**
@@ -40,5 +41,12 @@ public class Command {
      * @param storage the storage system involved in the command execution.
      */
     public void execute(TaskList tasks, Ui ui, Storage storage) {
+    }
+
+    /**
+     * Returns the result of executing the command or the empty string if the command has not been executed.
+     */
+    public String getResultOfCommand() {
+        return resultMessage;
     }
 }
