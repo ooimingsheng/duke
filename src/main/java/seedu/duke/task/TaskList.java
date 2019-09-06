@@ -1,11 +1,13 @@
 package seedu.duke.task;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
 public class TaskList {
 
     private List<Task> taskList;
+    private HashSet<String> taskDescriptionDictionary = new HashSet<>();
     private static final String INDENT = "  ";
 
     /**
@@ -14,6 +16,9 @@ public class TaskList {
      */
     public TaskList(List<Task> taskList) {
         this.taskList = taskList;
+        for (Task task : taskList) {
+            taskDescriptionDictionary.add(task.getDescription());
+        }
     }
 
     /**
@@ -40,21 +45,16 @@ public class TaskList {
     }
 
     /**
-     * Adds a To Do task to the task list system and returns it.
-     * @param description the description of the task to be added to the task system.
-     * @return the "To Do" task that was added to the task list system.
-     */
-    public Task addTask(String description) {
-        return addTask(description, "todo");
-    }
-
-    /**
      * Adds a task of stipulated type to the task list system and returns it.
      * @param description the description of the task to be added to the task system.
      * @param taskType the task type of the task to be added to the task system.
      * @return the "To Do" task that was added to the task list system.
      */
-    public Task addTask(String description, String taskType) {
+    public Task addTask(String description, String taskType) throws DukeException {
+        if (taskDescriptionDictionary.contains(description)) {
+            throw new DukeException(description + " is a duplicate task and already inside the task list.");
+        }
+        taskDescriptionDictionary.add(description);
         Task task = Task.taskFactory(description, taskType);
         taskList.add(task);
         return task;

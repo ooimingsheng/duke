@@ -1,5 +1,6 @@
 package seedu.duke.command;
 
+import seedu.duke.task.DukeException;
 import seedu.duke.task.TaskList;
 import seedu.duke.task.Ui;
 import seedu.duke.task.Storage;
@@ -33,7 +34,7 @@ abstract public class Command {
      * @param ui the user interface system involved in the command execution.
      * @param storage the storage system involved in the command execution.
      */
-    abstract public void execute(TaskList tasks, Ui ui, Storage storage);
+    abstract public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException;
 
     /**
      * Returns the result of executing the command or the empty string if the command has not been executed.

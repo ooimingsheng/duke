@@ -1,9 +1,8 @@
 package seedu.duke.command;
 
-import seedu.duke.task.TaskList;
-import seedu.duke.task.Task;
-import seedu.duke.task.Ui;
-import seedu.duke.task.Storage;
+import seedu.duke.task.*;
+
+import java.security.DigestException;
 
 public class AddCommand extends Command {
 
@@ -28,8 +27,8 @@ public class AddCommand extends Command {
      * @param storage the storage system involved in the command execution.
      */
     @Override
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
-        Task task = taskType != null ? tasks.addTask(taskDescription, taskType) : tasks.addTask(taskDescription);
+    public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
+        Task task = tasks.addTask(taskDescription, taskType);
         ui.showAddMessage(task, tasks);
         super.resultMessage = ui.getAddMessage(task, tasks);
     }
