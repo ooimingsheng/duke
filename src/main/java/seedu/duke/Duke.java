@@ -12,8 +12,7 @@ public class Duke {
     private Storage storage;
     private TaskList tasks;
     private Ui ui;
-    private static final String filePath
-            = "C:\\Users\\Ooi Ming Sheng\\Desktop\\CS2103\\Individual project\\duke\\data\\duke.txt";
+    private static final String filePath = ".\\data\\duke.txt";
     private boolean isSystemRunning;
 
     /**
@@ -46,6 +45,8 @@ public class Duke {
                 isExit = c.isExit();
             } catch (DukeException e) {
                 ui.showError(e.getMessage());
+            } catch (Exception e) {
+                ui.showError("Your command is meanning occurred.");
             } finally {
                 ui.showLine();
             }

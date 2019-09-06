@@ -4,19 +4,12 @@ import seedu.duke.task.TaskList;
 import seedu.duke.task.Ui;
 import seedu.duke.task.Storage;
 
-public class Command {
+abstract public class Command {
 
     protected String[] params;
     protected String action;
     protected String resultMessage;
     protected boolean isExit;
-
-    /**
-     * Command has a private constructor to prevent the object from being created directly.
-     */
-    private Command() {
-        resultMessage = "";
-    }
 
     /**
      * Public constructor that returns a command to the system.
@@ -40,8 +33,7 @@ public class Command {
      * @param ui the user interface system involved in the command execution.
      * @param storage the storage system involved in the command execution.
      */
-    public void execute(TaskList tasks, Ui ui, Storage storage) {
-    }
+    abstract public void execute(TaskList tasks, Ui ui, Storage storage);
 
     /**
      * Returns the result of executing the command or the empty string if the command has not been executed.

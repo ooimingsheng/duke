@@ -41,12 +41,12 @@ public class Parser {
         case "event":
             taskType = params[0];
             if (params.length <= 1) {
-                throw new DukeException("☹ OOPS!!! The description of a " + taskType + " cannot be empty.");
+                throw new DukeException("OOPS!!! The description of a " + taskType + " cannot be empty.");
             }
             taskDescription = params[1];
             return new AddCommand(taskDescription, taskType);
         default:
-            throw new DukeException("☹ OOPS!!! I'm sorry, but I don't know what that means :-(");
+            throw new DukeException("OOPS!!! I'm sorry, but I don't know what that means :-(");
         }
     }
 }
