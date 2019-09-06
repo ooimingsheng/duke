@@ -26,6 +26,7 @@ public class DoneCommand extends Command {
      * @param storage the storage system involved in the command execution.
      */
     public void execute(TaskList tasks, Ui ui, Storage storage) {
+        assert taskNoToBeChecked >= 0 && taskNoToBeChecked < tasks.getTaskList().size();
         Task task = tasks.checkOffTask(taskNoToBeChecked);
         ui.showDoneMessage(task);
         super.resultMessage = ui.getDoneMessage(task);

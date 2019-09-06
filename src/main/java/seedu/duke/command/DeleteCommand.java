@@ -27,6 +27,7 @@ public class DeleteCommand extends Command {
      */
     @Override
     public void execute(TaskList tasks, Ui ui, Storage storage) {
+        assert taskNoToBeRemoved >= 0 && taskNoToBeRemoved < tasks.getTaskList().size();
         Task task = tasks.removeTask(taskNoToBeRemoved);
         ui.showDeleteMessage(task, tasks);
         super.resultMessage = ui.getDeleteMessage(task, tasks);
