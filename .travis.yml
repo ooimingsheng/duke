@@ -1,7 +1,10 @@
 language: java
+
+dist: trusty
+
 matrix:
   include:
-    - jdk: oraclejdk11
+    - jdk: oraclejdk8
 
 install: true
 

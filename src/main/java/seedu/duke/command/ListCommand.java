@@ -17,7 +17,7 @@ public class ListCommand extends Command {
     }
 
     /*
-     * List all the tasks in the system.
+     * Lists: all the tasks in the system.
      * @param tasks the task list system involved in the command execution.
      * @param ui the user interface system involved in the command execution.
      * @param storage the storage system involved in the command execution.
