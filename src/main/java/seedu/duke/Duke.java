@@ -12,7 +12,7 @@ public class Duke {
     private Storage storage;
     private TaskList tasks;
     private Ui ui;
-    private static final String filePath = ".\\data\\duke.txt";
+    private static final String filePath = "data/duke.txt";
     private boolean isSystemRunning;
 
     /**
@@ -71,21 +71,12 @@ public class Duke {
                 c.execute(tasks, ui, storage);
                 isSystemRunning = !c.isExit();
                 return c.getResultOfCommand();
-            } catch (DukeException e) {
+            } catch (Exception e) {
                 return ui.getError(e.getMessage());
             }
         } else {
             return "System has already shut down.";
         }
-    }
-
-    /**
-     * The main class to initialize and drive the program.
-     *
-     * @param args parameters recieved from the command line
-     */
-    public static void main(String[] args) {
-        new Duke().run();
     }
 }
 

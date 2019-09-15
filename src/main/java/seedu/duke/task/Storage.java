@@ -1,15 +1,16 @@
 package seedu.duke.task;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.io.FileNotFoundException;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class Storage {
 
-    private String filePath;
+    private File file;
     public static String DIVIDER = " XXXDIVIDERXXX ";
 
     /**
@@ -17,7 +18,7 @@ public class Storage {
      * @param filePath the file path to save and load task data of the system.
      */
     public Storage(String filePath) {
-        this.filePath = filePath;
+        this.file = new File(filePath);
     }
 
     /**
@@ -27,15 +28,16 @@ public class Storage {
     public List<Task> load() throws DukeException {
         List<Task> taskList = new ArrayList<>();
         try {
-            BufferedReader br = new BufferedReader(new FileReader(filePath));
-            String line;
-            while ((line = br.readLine()) != null) {
+            Scanner sc = new Scanner(file);
+            while (sc.hasNext()) {
+                String line = sc.nextLine();
                 String[] taskParams = line.split(Storage.DIVIDER);
                 Task task = Task.taskFactory(taskParams);
                 taskList.add(task);
             }
-        } catch (IOException ioException) {
-            throw new DukeException("File to be loaded could not be found.");
+        } catch (FileNotFoundException e) {
+            file.getParentFile().mkdirs();
+            return new ArrayList<>();
         }
         return taskList;
     }
@@ -46,7 +48,7 @@ public class Storage {
      * @param ui the user interface to show the saving error if there is an error when saving.
      */
     public void saveTasks(List<Task> taskList, Ui ui) {
-        try (FileWriter writer = new FileWriter(filePath)) {
+        try (FileWriter writer = new FileWriter(file);) {
             for (Task task : taskList) {
                 if (task instanceof ToDo) {
                     writer.write("T");
@@ -67,5 +69,4 @@ public class Storage {
             ui.showSavingError();
         }
     }
-
 }
